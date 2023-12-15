@@ -1,1 +1,7 @@
-DATABASE_URL=    // Mongodb Connection String
+// Frontend Env
+REACT_APP_BACKEND_URL=
+
+
+// Backend Env
+DATABASE_URL=    # Mongodb Connection String
+FRONTEND_URL=   # Frontend url
