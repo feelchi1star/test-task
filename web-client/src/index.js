@@ -20,6 +20,7 @@ const router = createBrowserRouter([
       const sectors = await res.json();
       return { sectors };
     },
+    errorElement: <Error />,
   },
   {
     path: "/:id",
