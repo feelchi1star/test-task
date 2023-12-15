@@ -1,0 +1,75 @@
+[{
+  "_id": {
+    "$oid": "657ca8bc48ad9dd27f14a25a"
+  },
+  "name": "Micheal John",
+  "sectors": [
+    {
+      "$oid": "6579c7674931dd7c9fa826a3"
+    },
+    {
+      "$oid": "6579c7674931dd7c9fa826a2"
+    }
+  ],
+  "agreeToTerms": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "657cc4a0cb6a2ea1ab35ee84"
+  },
+  "name": "Felix Chinonso Emmanuel",
+  "sectors": [
+    {
+      "$oid": "6579c7674931dd7c9fa826a3"
+    },
+    {
+      "$oid": "6579c7674931dd7c9fa826a2"
+    },
+    {
+      "$oid": "6579d5e6a430c9acda49dddd"
+    },
+    {
+      "$oid": "6579d5e6a430c9acda49ddde"
+    },
+    {
+      "$oid": "6579d5e6a430c9acda49dddc"
+    }
+  ],
+  "agreeToTerms": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "657cc4becb6a2ea1ab35ee91"
+  },
+  "name": "John Doe",
+  "sectors": [
+    {
+      "$oid": "6579c7674931dd7c9fa826a3"
+    },
+    {
+      "$oid": "6579c7674931dd7c9fa826a2"
+    },
+    {
+      "$oid": "6579d5e6a430c9acda49dddb"
+    },
+    {
+      "$oid": "6579d5e6a430c9acda49ddda"
+    },
+    {
+      "$oid": "6579d5e6a430c9acda49ddd9"
+    },
+    {
+      "$oid": "6579d5e6a430c9acda49dddd"
+    },
+    {
+      "$oid": "6579d5e6a430c9acda49ddde"
+    },
+    {
+      "$oid": "6579d5e6a430c9acda49dddc"
+    }
+  ],
+  "agreeToTerms": true,
+  "__v": 0
+}]
