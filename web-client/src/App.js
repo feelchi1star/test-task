@@ -42,7 +42,7 @@ function App() {
             </div>
           </div>
         </div>
-        <SimpleModal ref={ModalRef} />
+        <SimpleModal ref={ModalRef} title={"Message"} />
       </div>
     </>
   );

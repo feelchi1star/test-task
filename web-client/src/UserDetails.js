@@ -45,7 +45,7 @@ const UserDetails = () => {
             </div>
           </div>
         </div>
-        <SimpleModal ref={ModalRef} />
+        <SimpleModal ref={ModalRef} title="Notification" />
       </div>
     </>
   );
