@@ -8,32 +8,20 @@ import reportWebVitals from "./reportWebVitals";
 import UserDetails from "./UserDetails";
 import { dataFetcher } from "./utils/fetcher";
 import Error from "./components/Error";
+import AppContextWrapper from "./store";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    loader: async ({ request }) => {
-      // loaders can be async functions
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/sectors`, {
-        signal: request.signal,
-      });
-      const sectors = await res.json();
-      return { sectors };
-    },
     errorElement: <Error />,
   },
   {
     path: "/:id",
     element: <UserDetails />,
     loader: async ({ params, request }) => {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/sectors`, {
-        signal: request.signal,
-      });
-      const sectors = await res.json();
-
       const { id } = params;
       let data = await dataFetcher("/user/" + id, undefined, undefined);
-      return { sectors, data };
+      return { data };
     },
     errorElement: <Error />,
   },
@@ -41,7 +29,9 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />{" "}
+    <AppContextWrapper>
+      <RouterProvider router={router} />{" "}
+    </AppContextWrapper>
   </React.StrictMode>
 );
 

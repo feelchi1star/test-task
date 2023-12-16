@@ -1,10 +1,14 @@
 import React, { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useAppContext } from "../store";
 
 const CustomSelect = ({ onChange = (f) => f, checkedOption = [], name }) => {
-  const { sectors: data } = useLoaderData();
-  const [allSectors] = useState(data);
+  const { sectorsData } = useAppContext();
+  const [allSectors, setAllSectors] = useState(sectorsData);
   const [selectedOptions, setSelectedOptions] = useState([...checkedOption]);
+
+  React.useEffect(() => {
+    setAllSectors(sectorsData);
+  }, [sectorsData]);
 
   return (
     <div className="flex flex-col w-full items-start justify-center gap-1">

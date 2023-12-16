@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 function App() {
   const ModalRef = React.useRef();
   const navigate = useNavigate();
+
   return (
     <>
       <div className="overlay-bg h-screen w-full">
