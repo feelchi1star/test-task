@@ -18,7 +18,7 @@ const router = createBrowserRouter([
   {
     path: "/:id",
     element: <UserDetails />,
-    loader: async ({ params, request }) => {
+    loader: async ({ params }) => {
       const { id } = params;
       let data = await dataFetcher("/user/" + id, undefined, undefined);
       return { data };
