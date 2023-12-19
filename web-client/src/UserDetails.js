@@ -1,7 +1,7 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
 import SimpleModal from "./components/Modal";
-import { dataFetcher } from "./utils/fetcher";
+import dataFetcher from "./utils/axios";
 import FORM from "./components/Form";
 
 const UserDetails = () => {

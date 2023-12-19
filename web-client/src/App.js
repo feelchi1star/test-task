@@ -1,7 +1,7 @@
 import "./App.css";
 import React from "react";
 import FORM from "./components/Form";
-import { dataFetcher } from "./utils/fetcher";
+import dataFetcher from "./utils/axios";
 import SimpleModal from "./components/Modal";
 import { useNavigate } from "react-router-dom";
 
@@ -17,24 +17,25 @@ function App() {
             <div className="lg:col-span-12">
               <FORM
                 onSubmitForm={(formData) => {
-                  dataFetcher("/user", "POST", {
-                    name: formData.name,
-                    sectors: formData.sectors,
-                    agreeToTerms: formData.agreeTerms,
-                  })
+                  dataFetcher
+                    .post("/user", {
+                      name: formData.name,
+                      sectors: formData.sectors,
+                      agreeToTerms: formData.agreeTerms,
+                    })
                     .then((res) => {
                       ModalRef.current.openModal({
                         timing: 3000,
-                        message: res.message,
+                        message: res.data.message,
                         err: false,
                       });
 
-                      navigate(`/` + res.data._id);
+                      navigate(`/` + res.data.data._id);
                     })
                     .catch((e) =>
                       ModalRef.current.openModal({
                         timing: 3000,
-                        message: e.message,
+                        message: e.data.message,
                         err: true,
                       })
                     );

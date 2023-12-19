@@ -6,7 +6,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import UserDetails from "./UserDetails";
-import { dataFetcher } from "./utils/fetcher";
+import dataFetcher from "./utils/axios";
 import Error from "./components/Error";
 import AppContextWrapper from "./store";
 const router = createBrowserRouter([
@@ -20,7 +20,7 @@ const router = createBrowserRouter([
     element: <UserDetails />,
     loader: async ({ params }) => {
       const { id } = params;
-      let data = await dataFetcher("/user/" + id, undefined, undefined);
+      let data = await (await dataFetcher.get("/user/" + id)).data;
       return { data };
     },
     errorElement: <Error />,
