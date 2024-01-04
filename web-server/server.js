@@ -23,8 +23,7 @@ async function main() {
   try {
     // In Production, this connects to the database before starting the App and fails completely if it can't connect to the database.
     if (ENV.NODE_ENV === "production") {
-      await mongoose.connect(ENV.DATABASE_URL);
-      console.log("Dd");
+      await mongoose.connect(process.env.DATABASE_URL);
     }
   } catch (err) {
     console.error("Error connecting to the database:", err);
