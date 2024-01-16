@@ -1,5 +1,5 @@
 import path from "path";
-
+import { readFileSync } from "fs";
 async function handler(req, res) {
   try {
     // Construct the path aligning with Vercel's recommendation:
