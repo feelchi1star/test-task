@@ -21,25 +21,26 @@ const UserDetails = () => {
                 }}
                 submitBtnText="Update"
                 onSubmitForm={(formData) => {
-                  dataFetcher("/user/" + data._id, "PATCH", {
-                    name: formData.name,
-                    sectors: formData.sectors,
-                    agreeToTerms: formData.agreeTerms,
-                  })
+                  dataFetcher
+                    .patch("/user/" + data._id, {
+                      name: formData.name,
+                      sectors: formData.sectors,
+                      agreeToTerms: formData.agreeTerms,
+                    })
                     .then((res) =>
                       ModalRef.current.openModal({
                         timing: 3000,
-                        message: res.message,
+                        message: res.data.message,
                         err: false,
                       })
                     )
-                    .catch((e) =>
+                    .catch((e) => {
                       ModalRef.current.openModal({
                         timing: 3000,
-                        message: e.message,
+                        message: e.response.data.message,
                         err: true,
-                      })
-                    );
+                      });
+                    });
                 }}
               ></FORM>
             </div>

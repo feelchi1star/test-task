@@ -1,0 +1,20 @@
+<div class="min-h-screen flex items-center  justify-center bg-gray-100 text-gray-800">
+
+    <ng-container *ngIf="showAlert; then modal">
+    </ng-container>
+
+    <router-outlet></router-outlet>
+
+</div>
+
+
+<ng-template #modal>
+    <div class="fixed z-30 transition-all delay-75  top-0 left-0 right-0 flex items-center justify-center">
+        <div class="bg-white/90 w-full text-black backdrop-blur p-4 lg:w-1/2 rounded shadow-md">
+            <p>
+                {{ modalMessage }}
+            </p>
+            <button (click)="closeAlert()" class="bg-gray-500 mt-3 rounded-lg p-2 text-white">Close Alert</button>
+        </div>
+    </div>
+</ng-template>

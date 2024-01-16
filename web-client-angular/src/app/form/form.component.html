@@ -1,0 +1,127 @@
+<div class="flex items-center  justify-center">
+    <div class="bg-white/90 backdrop-blur w-full  p-9 rounded-2xl lg:h-[85vh] shadow border">
+        <form [formGroup]="formData" (submit)="$event.preventDefault(); handleFormSubmit()">
+            <div class="w-full flex items-center gap-4 flex-col">
+                <div class="">
+                    <h3 class="mb-3 text-3xl font-bold">
+                        {{title}}
+                    </h3>
+                    <p class="text-sm">
+                        Please enter your name and pick the Sectors you are currently
+                        involved in.
+                    </p>
+                </div>
+                <div class="flex items-start flex-col gap-y-1 justify-center w-full">
+                    <label for="name" class="">
+                        Name: <sup class="text-red-500">*</sup>
+                    </label>
+                    <input required type="text" formControlName="name" name="name" class="border-b w-full border-black/30
+                        placeholder:text-black/30 bg-transparent p-2 focus:outline-none focus:border-blue-500"
+                        placeholder="Enter your name" />
+                    <div
+                        *ngIf="formData.get('name')?.invalid && formData.get('name')?.dirty || formData.get('name')?.touched">
+                        <span *ngIf="formData.get('name')?.hasError('required')"
+                            class="text-xs text-red-400  transition-all delay-75 ease-linear">Provide
+                            your
+                            Name</span>
+                        <span *ngIf="formData.get('name')?.hasError('minlength')" class="text-xs text-red-500">
+                            minimum character of 5
+                        </span>
+                    </div>
+                </div>
+
+
+                <div class="flex-col w-full items-start justify-center  gap-1">
+                    <label for="select">
+                        Sectors: <sup class="text-red-500">*</sup>
+                    </label>
+
+                    <select *ngIf="allSectors" required multiple name="sectors" formControlName="sectors"
+                        class="w-full p-2 border-b   appearance-none selection:bg-red-500 bg-transparent border-black/30 max-h-32 focus:outline-none focus:border-black/50">
+
+                        <ng-container *ngFor=" let group of allSectors">
+
+
+                            <option class="font-semibold  text-sm lg:text-base disabled:text-black disabled:opacity-100"
+                                [disabled]="group.children.length>0" [value]="group.value">{{group.label}} </option>
+                            <ng-container *ngIf="group.children.length > 0">
+                                <ng-container *ngFor="let item of group.children">
+                                    <option [disabled]="item.children.length>0"
+                                        [ngClass]="{'font-bold': item.children.length > 0, 'focus\:outline-none': item.children.length > 0}"
+                                        [value]="item.value"
+                                        class="text-sm lg:text-base disabled:text-black disabled:opacity-100 ms-3">
+                                        {{item.label}}
+                                    </option>
+                                    <ng-container *ngIf="item.children.length > 0">
+                                        <ng-container *ngFor="let child of item.children">
+                                            <option [disabled]="child.children.length>0"
+                                                [ngClass]="{'font-bold': child.children.length > 0, 'focus\:outline-none': child.children.length > 0}"
+                                                [value]="child.value"
+                                                class="text-sm lg:text-base disabled:text-black disabled:opacity-100 ms-6">
+                                                {{child.label}}
+                                            </option>
+
+                                            <ng-container *ngIf="child.children.length > 0">
+                                                <ng-container *ngFor="let nextChild of child.children">
+                                                    <option [disabled]="nextChild.children.length>0"
+                                                        [ngClass]="{'font-bold': nextChild.children.length > 0, 'focus\:outline-none': nextChild.children.length > 0}"
+                                                        [value]="nextChild.value"
+                                                        class="text-sm lg:text-base disabled:text-black disabled:opacity-100 lg:ms-9">
+                                                        {{nextChild.label}}
+                                                    </option>
+
+
+                                                </ng-container></ng-container>
+                                        </ng-container>
+                                    </ng-container>
+                                </ng-container>
+                            </ng-container>
+
+                        </ng-container>
+                    </select>
+
+
+
+                    <div
+                        *ngIf="formData.get('sectors')?.invalid && formData.get('sectors')?.dirty || formData.get('sectors')?.touched">
+                        <span *ngIf="formData.get('sectors')?.hasError('required')"
+                            class="text-xs text-red-400  transition-all delay-75 ease-linear">Please select a
+                            sector</span>
+                        <span *ngIf="formData.get('sectors')?.hasError('minlength')" class="text-xs text-red-500">
+                            Please select a minimum sector of 3
+                        </span>
+                    </div>
+                </div>
+
+                <div class="flex items-start flex-col  justify-center w-full">
+                    <label *ngIf="!userData.agreeToTerms" class="flex items-baseline justify-center space-x-2">
+                        <input type="checkbox" formControlName="agreeToTerms" name="agreeToTerms" required
+                            class=" border-gray-300 focus:ring-blue-500 text-blue-500" />
+                        <span class="text-gray-700">Agree to Terms</span>
+                    </label>
+                    <div
+                        *ngIf="formData.get('agreeTerms')?.invalid && formData.get('agreeTerms')?.dirty || formData.get('agreeTerms')?.touched">
+
+                        <span *ngIf="formData.get('agreeTerms')?.hasError('agreeTermsValid')"
+                            class="text-xs text-red-400">
+                            Please accept the terms and condition
+                        </span>
+                    </div>
+
+                </div>
+                <div class="flex w-full items-center  justify-end">
+                    <button [disabled]="formData.invalid" type="submit"
+                        class="bg-[#0b39dd] mt-4 disabled:opacity-30 py-2 px-14 text-white  rounded-3xl">
+                        Submit </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<ng-template #requiredTemplate>
+    <small class="text-red-500 text-xs">
+        This field is required.
+    </small>
+</ng-template>

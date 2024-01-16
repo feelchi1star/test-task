@@ -1,0 +1,7 @@
+<div *ngIf="!fetchData; else contentTemplate">
+    <p class="font-extrabold text-center text-4xl lg:text-7xl">{{notfound}}</p>
+</div>
+
+<ng-template #contentTemplate>
+    <app-form (formChange)="submitForm($event)" title="View User" [userData]="fetchData"></app-form>
+</ng-template>

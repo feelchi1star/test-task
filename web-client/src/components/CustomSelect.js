@@ -21,30 +21,30 @@ const CustomSelect = ({ onChange = (f) => f, checkedOption = [], name }) => {
         Sectors: <sup className="text-red-500">*</sup>
       </label>
       <div className=" w-full">
-        <Suspense
-          fallback={
-            <p>
-              <i>Loading...</i>
-            </p>
-          }
+        <select
+          // required
+          multiple
+          name={name}
+          className="w-full p-2 border-b   appearance-none selection:bg-red-500 bg-transparent border-black/30 max-h-32 focus:outline-none focus:border-black/50"
+          value={selectedOptions}
+          onChange={(e) => {
+            setSelectedOptions(
+              Array.from(e.target.selectedOptions, (option) => option.value)
+            );
+            onChange({
+              sectors: Array.from(
+                e.target.selectedOptions,
+                (option) => option.value
+              ),
+            });
+          }}
         >
-          <select
-            // required
-            multiple
-            name={name}
-            className="w-full p-2 border-b   appearance-none selection:bg-red-500 bg-transparent border-black/30 max-h-32 focus:outline-none focus:border-black/50"
-            value={selectedOptions}
-            onChange={(e) => {
-              setSelectedOptions(
-                Array.from(e.target.selectedOptions, (option) => option.value)
-              );
-              onChange({
-                sectors: Array.from(
-                  e.target.selectedOptions,
-                  (option) => option.value
-                ),
-              });
-            }}
+          <Suspense
+            fallback={
+              <p>
+                <i>Loading...</i>
+              </p>
+            }
           >
             {allSectors.map((group, idx) => {
               return (
@@ -103,8 +103,8 @@ const CustomSelect = ({ onChange = (f) => f, checkedOption = [], name }) => {
                 </React.Fragment>
               );
             })}
-          </select>
-        </Suspense>
+          </Suspense>
+        </select>
       </div>
     </div>
   );
