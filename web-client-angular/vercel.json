@@ -5,8 +5,7 @@
   "builds": [
     {
       "src": "api/index.mjs",
-      "use": "@vercel/node",
-      "prebuild": "npm run build"
+      "use": "@vercel/node"
     }
   ],
   "routes": [
