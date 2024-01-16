@@ -9,7 +9,7 @@
     }
   ],
   "functions": {
-    "api/index.mjs": {
+    "api/index.js": {
       "includeFiles": "dist/web-client-angular/**"
     }
   }
