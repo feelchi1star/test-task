@@ -1,13 +1,21 @@
-import path from "path"; // Use import for ES modules
+import path from "path";
+
 async function handler(req, res) {
   try {
-    // Construct the path using process.cwd()
+    // Construct the path aligning with Vercel's recommendation:
     const serverModulePath = path.join(
       process.cwd(),
-      "../dist/web-client-angular/server/server.mjs"
+      "dist",
+      "web-client-angular",
+      "server",
+      "server.mjs"
     );
 
-    // Import using the constructed path
+    // Ensure path resolution before import:
+    if (!fs.existsSync(serverModulePath)) {
+      throw new Error(`File not found: ${serverModulePath}`);
+    }
+
     const server = await import(serverModulePath);
 
     server.app();
@@ -17,5 +25,5 @@ async function handler(req, res) {
   }
 }
 
-console.log(process.cwd()); // For debugging purposes
+console.log(process.cwd()); // For debugging
 export default handler;
