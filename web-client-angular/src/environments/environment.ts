@@ -1,3 +1,3 @@
 export const environment = {
-  apiUrl: 'http://localhost:8000/v1',
+  apiUrl: 'https://busy-pink-walkingstick-boot.cyclic.app/v1',
 };
